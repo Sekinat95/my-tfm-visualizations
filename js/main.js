@@ -5,6 +5,8 @@ google.charts.setOnLoadCallback(delays);
 google.charts.setOnLoadCallback(energy);
 //min-max
 google.charts.setOnLoadCallback(networkMinMax);
+google.charts.setOnLoadCallback(delaysMinMax);
+google.charts.setOnLoadCallback(energyMinMax);
 //fuzzy + GA
 
 function network(){
@@ -87,11 +89,56 @@ function networkMinMax(){
   var options = {
     chart: {
       title: 'Network usage',
-      subtitle: 'DCNS: network usage in both cloud and edge',
+      subtitle: 'DCNS: network usage in both cloud and edge after using min-max algorithm',
     }
   };
 
   
   const chart = new google.charts.Bar(document.getElementById('chart4'));
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+
+function delaysMinMax(){
+  var data = google.visualization.arrayToDataTable([
+    ['delays', 'cloud', 'edge'],
+    ['config 1', 212.9206656, 15.16401786],
+    ['config 2', 213.3245389, 15.16401786],
+    ['config 3', 214.1268055, 15.16401786],
+    ['config 4', 1296.396076, 15.16401786],
+    ['config 5', 3227.491514, 15.16401786]
+  ]);
+
+  var options = {
+    chart: {
+      title: 'delays',
+      subtitle: 'DCNS: delays after using min-max algorithm',
+    }
+  };
+
+  
+  const chart = new google.charts.Bar(document.getElementById('chart5'));
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+
+function energyMinMax(){
+  var data = google.visualization.arrayToDataTable([
+    ['Energy Consumption', 'DC energy', 'edge energy', 'camera energy'],
+    ['config-2 cloud', 14271701.25, 1668666, 6770414.088],
+    ['config-2 edge', 13349068.43, 2097670.862, 8390683.448],
+    ['config-3 cloud', 15144143.09, 3337332, 13540828.18],
+    ['config-3 edge', 13377030.48, 4195341.724, 13540828.18],
+    ['config-4 cloud', 16043691.21, 6674664, 27081656.35],
+    ['config-4 edge', 13534710.82, 8390683.448, 27081656.35]
+  ]);
+
+  var options = {
+    chart: {
+      title: 'delays',
+      subtitle: 'DCNS: energy consumption after using min-max algorithm',
+    }
+  };
+
+  
+  const chart = new google.charts.Bar(document.getElementById('chart6'));
   chart.draw(data, google.charts.Bar.convertOptions(options));
 }
