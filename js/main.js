@@ -4,11 +4,12 @@ google.charts.setOnLoadCallback(network);
 google.charts.setOnLoadCallback(delays);
 google.charts.setOnLoadCallback(energy);
 //min-max
+google.charts.setOnLoadCallback(networkMinMax);
 //fuzzy + GA
 
 function network(){
   var data = google.visualization.arrayToDataTable([
-    ['configurations', 'cloud', 'edge'],
+    ['network usage', 'cloud', 'edge'],
     ['config 1', 166344, 11631],
     ['config 2', 332589, 22263],
     ['config 3', 498834, 34262],
@@ -30,7 +31,7 @@ function network(){
 
 function delays(){
   var data = google.visualization.arrayToDataTable([
-    ['configurations', 'cloud', 'edge'],
+    ['delays', 'cloud', 'edge'],
     ['config 1', 210.3834831, 8.467142857],
     ['config 2', 210.7761963, 8.467142857],
     ['config 3', 211.5724779, 8.467142857],
@@ -70,5 +71,27 @@ function energy(){
 
   
   const chart = new google.charts.Bar(document.getElementById('chart3'));
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+
+function networkMinMax(){
+  var data = google.visualization.arrayToDataTable([
+    ['cnetwork usage', 'cloud', 'edge'],
+    ['config 1', 166344, 12182.32],
+    ['config 2', 332589, 22814.64],
+    ['config 3', 664999, 45649.68],
+    ['config 4', 1050079, 91073.76],
+    ['config 5', 1101319, 181820.32]
+  ]);
+
+  var options = {
+    chart: {
+      title: 'Network usage',
+      subtitle: 'DCNS: network usage in both cloud and edge',
+    }
+  };
+
+  
+  const chart = new google.charts.Bar(document.getElementById('chart4'));
   chart.draw(data, google.charts.Bar.convertOptions(options));
 }
